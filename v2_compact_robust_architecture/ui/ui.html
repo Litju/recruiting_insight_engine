@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PwC Recruiting Insight Engine – Analyst Console</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IMPORTANT: ui.css is served from /ui/ui.css -->
+    <link rel="stylesheet" href="/ui/ui.css">
+</head>
+<body>
+    <header class="top-bar">
+        <h1>PwC Recruiting Insight Engine – Analyst Console</h1>
+        <p>Salary prediction &amp; insights with data integrity gating</p>
+    </header>
+
+    <main class="layout">
+        <!-- LEFT: INPUTS -->
+        <section class="panel panel-left">
+            <h2>Candidate Profile</h2>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input id="age" type="number" min="18" max="80" value="28">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender">
+                    <option value="">Select...</option>
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other / Prefer not to say</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="education">Education Level</label>
+                <select id="education">
+                    <option value="">Select...</option>
+                    <option value="High School">High School</option>
+                    <option value="Bachelor's" selected>Bachelor's</option>
+                    <option value="Master's">Master's</option>
+                    <option value="PhD">PhD</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle">Job Title</label>
+                <select id="jobTitle">
+                    <option value="">Select...</option>
+                    <option value="Software Engineer" selected>Software Engineer</option>
+                    <option value="Data Analyst">Data Analyst</option>
+                    <option value="Senior Manager">Senior Manager</option>
+                    <option value="Sales Associate">Sales Associate</option>
+                    <option value="Director">Director</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Years of Experience</label>
+                <input id="experience" type="number" min="0" max="40" step="1" value="5">
+            </div>
+
+            <button id="submitBtn">Generate Insights</button>
+
+            <div class="status-card">
+                <h3>API Status</h3>
+                <p id="apiStatus">Waiting for input...</p>
+            </div>
+        </section>
+
+        <!-- RIGHT: OUTPUTS -->
+        <section class="panel panel-right">
+            <div class="card">
+                <h3>Merge Health Index</h3>
+                <p>MHI Zone: <span id="mhiZone">N/A</span></p>
+                <p>MHI Score: <span id="mhiScore">–</span></p>
+            </div>
+
+            <div class="card">
+                <h3>Salary Prediction</h3>
+                <p>Predicted Salary: <span id="predictedSalary">–</span></p>
+                <p>Offer Band: <span id="offerBand">–</span></p>
+                <p>Market Band: <span id="marketBand">–</span></p>
+            </div>
+
+            <div class="card">
+                <h3>Top Drivers</h3>
+                <ul id="driversList">
+                    <li>No drivers yet.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Cohort Insights</h3>
+                <p id="cohortSummary">–</p>
+            </div>
+
+            <div class="card">
+                <h3>Fairness Overview</h3>
+                <p id="fairnessSummary">No fairness flags.</p>
+            </div>
+
+            <div class="card">
+                <h3>Narrative Insight</h3>
+                <p id="narrativeText">No narrative yet.</p>
+            </div>
+
+            <div class="card">
+                <h3>Raw JSON</h3>
+                <button id="toggleRawBtn" type="button">Toggle</button>
+                <pre id="rawJson" class="hidden"></pre>
+            </div>
+        </section>
+    </main>
+
+    <!-- IMPORTANT: ui.js is served from /ui/ui.js -->
+    <script src="/ui/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+recruiting-insight-engine/
+├─ app/
+│  ├─ api/
+│  │  ├─ __init__.py
+│  │  ├─ routes.py
+│  ├─ core/
+│  │  ├─ config.py
+│  ├─ ml/
+│  │  ├─ __init__.py
+│  │  ├─ train_pipeline.py
+│  │  ├─ inference.py
+│  │  ├─ artifacts/
+│  │  │  ├─ preprocessor.pkl
+│  │  │  ├─ model.pkl
+│  ├─ metrics/
+│  │  ├─ __init__.py
+│  │  ├─ recruiting_metrics.py
+│  ├─ insights/
+│  │  ├─ __init__.py
+│  │  ├─ engine.py
+│  ├─ schemas/
+│  │  ├─ __init__.py
+│  │  ├─ candidate.py
+│  ├─ main.py
+├─ notebooks/
+│  ├─ 01_exploration.ipynb
+│  ├─ 02_model_dev.ipynb
+├─ data/
+│  ├─ raw/
+│  ├─ processed/
+├─ docs/
+│  ├─ architecture_spec_v1.docx
+├─ requirements.txt
+├─ README.md

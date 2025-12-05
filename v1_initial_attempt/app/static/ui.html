@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recruiting Insight Engine — Analyst Console</title>
+  <link rel="stylesheet" href="/static/ui.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">Recruiting Insight Engine</div>
+        <h1>Analyst Console</h1>
+      </div>
+      <div id="status" aria-live="polite">Ready.</div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h2>Candidate Inputs</h2>
+        <div class="form">
+          <label>Age
+            <input type="number" id="age" min="0" step="1" value="32">
+          </label>
+          <label>Gender
+            <select id="gender">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Education Level
+            <select id="education"></select>
+          </label>
+          <label>Job Title
+            <select id="jobTitle"></select>
+          </label>
+          <label>Years of Experience
+            <input type="number" id="experience" min="0" step="0.5" value="5">
+          </label>
+          <button id="submit-btn">Generate Insights</button>
+        </div>
+        <div class="helper">
+          <div class="helper-title">How to use</div>
+          <ul>
+            <li>Enter the 5 required fields.</li>
+            <li>Click “Generate Insights”.</li>
+            <li>Review executive summary, drivers, cohorts, and bias audit.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section class="card" id="executive">
+          <div class="card-header">
+            <h3>Executive Summary</h3>
+            <div id="flags"></div>
+          </div>
+          <div class="summary-grid">
+            <div class="kpi">
+              <div class="label">Salary Prediction</div>
+              <div class="value" id="salary_prediction">—</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Market Band</div>
+              <div class="tag" id="market_band">—</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Fairness Score</div>
+              <div class="value" id="fairness_score">—</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Δ vs Mean</div>
+              <div class="value" id="delta_vs_mean">—</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Offer Range</div>
+              <div class="value" id="offer_range">—</div>
+            </div>
+          </div>
+          <div class="clarity" id="exec_clarity"></div>
+        </section>
+
+        <section class="card" id="drivers">
+          <div class="card-header">
+            <h3>Top Drivers</h3>
+            <div class="note">Positive/negative contributions</div>
+          </div>
+          <div id="drivers_list" class="driver-list"></div>
+        </section>
+
+        <section class="card" id="cohorts">
+          <div class="card-header">
+            <h3>Cohort Insights</h3>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>Reference Mean</th>
+                <th>Δ vs Pred</th>
+                <th>Δ% vs Pred</th>
+                <th>Samples</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody id="cohort_rows"></tbody>
+          </table>
+        </section>
+
+        <section class="card" id="bias">
+          <div class="card-header">
+            <h3>Bias & Fairness Audit</h3>
+          </div>
+          <div class="bias-grid" id="bias_sections"></div>
+          <div class="flags-row">
+            <span class="label">Bias Flags:</span>
+            <span id="bias_flags">—</span>
+          </div>
+          <div class="clarity" id="bias_clarity"></div>
+        </section>
+
+        <section class="card" id="narrative">
+          <div class="card-header">
+            <h3>Narrative</h3>
+          </div>
+          <p id="narrative_text" class="narrative-body">—</p>
+        </section>
+
+        <section class="card" id="raw">
+          <div class="card-header">
+            <h3>Raw JSON</h3>
+          </div>
+          <details>
+            <summary>Show/Hide</summary>
+            <pre id="raw_json"></pre>
+          </details>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="/static/ui.js"></script>
+</body>
+</html>
