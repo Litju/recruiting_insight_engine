@@ -2,117 +2,177 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PwC Recruiting Insight Engine – Analyst Console</title>
+    <title>PwC Recruiting Insight Engine - Analyst Console</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- IMPORTANT: ui.css is served from /ui/ui.css -->
     <link rel="stylesheet" href="/ui/ui.css">
 </head>
 <body>
-    <header class="top-bar">
-        <h1>PwC Recruiting Insight Engine – Analyst Console</h1>
-        <p>Salary prediction &amp; insights with data integrity gating</p>
-    </header>
-
-    <main class="layout">
-        <!-- LEFT: INPUTS -->
-        <section class="panel panel-left">
-            <h2>Candidate Profile</h2>
-
-            <div class="form-group">
-                <label for="age">Age</label>
-                <input id="age" type="number" min="18" max="80" value="28">
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">
+                    <span class="mark mark-1"></span>
+                    <span class="mark mark-2"></span>
+                    <span class="mark mark-3"></span>
+                    <span class="mark mark-4"></span>
+                </div>
+                <div>
+                    <p class="eyebrow">PwC Consulting</p>
+                    <h1>Recruiting Insight Engine</h1>
+                    <p class="subtitle">Analyst Console</p>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender">
-                    <option value="">Select...</option>
-                    <option value="Male" selected>Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other / Prefer not to say</option>
-                </select>
+            <div class="sidebar-section">
+                <div class="section-header">
+                    <h2>Candidate Profile</h2>
+                    <p>Enter inputs to refresh analytics</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input id="age" type="number" min="18" max="80" value="28">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option value="">Select...</option>
+                            <option value="Male" selected>Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other / Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Education Level</label>
+                        <select id="education">
+                            <option value="">Select...</option>
+                            <option value="High School">High School</option>
+                            <option value="Bachelor's" selected>Bachelor's</option>
+                            <option value="Master's">Master's</option>
+                            <option value="PhD">PhD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title</label>
+                        <select id="jobTitle">
+                            <option value="">Select...</option>
+                            <option value="Software Engineer" selected>Software Engineer</option>
+                            <option value="Data Analyst">Data Analyst</option>
+                            <option value="Senior Manager">Senior Manager</option>
+                            <option value="Sales Associate">Sales Associate</option>
+                            <option value="Director">Director</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <input id="experience" type="number" min="0" max="40" step="1" value="5">
+                    </div>
+                </div>
+
+                <button id="submitBtn" class="primary-btn" type="button">Generate Insights</button>
+
+                <div class="status-card">
+                    <div class="status-label">API Status</div>
+                    <p id="apiStatus">Waiting for input...</p>
+                </div>
             </div>
+        </aside>
 
-            <div class="form-group">
-                <label for="education">Education Level</label>
-                <select id="education">
-                    <option value="">Select...</option>
-                    <option value="High School">High School</option>
-                    <option value="Bachelor's" selected>Bachelor's</option>
-                    <option value="Master's">Master's</option>
-                    <option value="PhD">PhD</option>
-                </select>
-            </div>
+        <section class="content">
+            <header class="content-header">
+                <div>
+                    <p class="eyebrow">Engagement Dashboard</p>
+                    <h2>Candidate Readiness &amp; Salary Guidance</h2>
+                    <p class="lead">Real-time guidance across salary, fairness, and narrative insights for decision-ready reviews.</p>
+                </div>
+                <div class="header-actions">
+                    <span class="chip primary">Live Data</span>
+                    <span class="chip">Integrity Gate</span>
+                </div>
+            </header>
 
-            <div class="form-group">
-                <label for="jobTitle">Job Title</label>
-                <select id="jobTitle">
-                    <option value="">Select...</option>
-                    <option value="Software Engineer" selected>Software Engineer</option>
-                    <option value="Data Analyst">Data Analyst</option>
-                    <option value="Senior Manager">Senior Manager</option>
-                    <option value="Sales Associate">Sales Associate</option>
-                    <option value="Director">Director</option>
-                </select>
-            </div>
+            <div class="cards-grid">
+                <article class="card metric-card">
+                    <div class="card-header">
+                        <h3>Merge Health Index</h3>
+                        <span id="mhiZone" class="badge gray">N/A</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="mhiScore">--</span>
+                        <p class="metric-sub">Stability indicator for candidate fit</p>
+                    </div>
+                </article>
 
-            <div class="form-group">
-                <label for="experience">Years of Experience</label>
-                <input id="experience" type="number" min="0" max="40" step="1" value="5">
-            </div>
+                <article class="card metric-card">
+                    <div class="card-header">
+                        <h3>Salary Prediction</h3>
+                        <span class="chip subtle">USD</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="predictedSalary">--</span>
+                        <p class="metric-sub">Confidence-aligned compensation signal</p>
+                    </div>
+                    <div class="detail-grid">
+                        <div>
+                            <p class="label">Offer Band</p>
+                            <p id="offerBand" class="detail-value">--</p>
+                        </div>
+                        <div>
+                            <p class="label">Market Band</p>
+                            <p id="marketBand" class="detail-value">--</p>
+                        </div>
+                    </div>
+                </article>
 
-            <button id="submitBtn">Generate Insights</button>
+                <article class="card drivers-card">
+                    <div class="card-header">
+                        <h3>Top Drivers</h3>
+                        <span class="chip subtle">Model explainability</span>
+                    </div>
+                    <ul id="driversList" class="drivers-list">
+                        <li class="muted">No drivers yet.</li>
+                    </ul>
+                </article>
 
-            <div class="status-card">
-                <h3>API Status</h3>
-                <p id="apiStatus">Waiting for input...</p>
+                <article class="card split-card">
+                    <div>
+                        <div class="card-header">
+                            <h3>Cohort Insights</h3>
+                        </div>
+                        <p id="cohortSummary" class="body-text">--</p>
+                    </div>
+                    <div>
+                        <div class="card-header">
+                            <h3>Fairness Overview</h3>
+                        </div>
+                        <p id="fairnessSummary" class="body-text">No fairness flags.</p>
+                    </div>
+                </article>
+
+                <article class="card narrative-card">
+                    <div class="card-header">
+                        <h3>Narrative Insight</h3>
+                        <span class="chip subtle">Analyst-ready</span>
+                    </div>
+                    <p id="narrativeText" class="body-text">No narrative yet.</p>
+                </article>
+
+                <article class="card raw-card">
+                    <div class="card-header">
+                        <h3>Raw JSON</h3>
+                        <button id="toggleRawBtn" class="ghost-btn" type="button">Show Raw JSON</button>
+                    </div>
+                    <pre id="rawJson" class="code-block hidden"></pre>
+                </article>
             </div>
         </section>
-
-        <!-- RIGHT: OUTPUTS -->
-        <section class="panel panel-right">
-            <div class="card">
-                <h3>Merge Health Index</h3>
-                <p>MHI Zone: <span id="mhiZone">N/A</span></p>
-                <p>MHI Score: <span id="mhiScore">–</span></p>
-            </div>
-
-            <div class="card">
-                <h3>Salary Prediction</h3>
-                <p>Predicted Salary: <span id="predictedSalary">–</span></p>
-                <p>Offer Band: <span id="offerBand">–</span></p>
-                <p>Market Band: <span id="marketBand">–</span></p>
-            </div>
-
-            <div class="card">
-                <h3>Top Drivers</h3>
-                <ul id="driversList">
-                    <li>No drivers yet.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>Cohort Insights</h3>
-                <p id="cohortSummary">–</p>
-            </div>
-
-            <div class="card">
-                <h3>Fairness Overview</h3>
-                <p id="fairnessSummary">No fairness flags.</p>
-            </div>
-
-            <div class="card">
-                <h3>Narrative Insight</h3>
-                <p id="narrativeText">No narrative yet.</p>
-            </div>
-
-            <div class="card">
-                <h3>Raw JSON</h3>
-                <button id="toggleRawBtn" type="button">Toggle</button>
-                <pre id="rawJson" class="hidden"></pre>
-            </div>
-        </section>
-    </main>
+    </div>
 
     <!-- IMPORTANT: ui.js is served from /ui/ui.js -->
     <script src="/ui/ui.js"></script>
